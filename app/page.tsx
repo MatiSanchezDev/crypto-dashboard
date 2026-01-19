@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -123,16 +124,14 @@ function HeroSection() {
         <div className="relative rounded-xl border border-white/10 bg-neutral-900/80 p-2 shadow-2xl backdrop-blur-sm">
           {/* Abstract Dashboard Representation via CSS/Divs if no image, or just a placeholder frame */}
           <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-neutral-950 relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-yellow-500/10" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neutral-700 font-mono text-xl">
-              [ DASHBOARD PREVIEW ]
-            </div>
-            {/* Creating some fake UI elements */}
-            <div className="absolute top-4 left-4 right-4 h-12 bg-white/5 rounded flex items-center px-4 gap-4">
-              <div className="w-3 h-3 rounded-full bg-red-500/20" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-              <div className="w-3 h-3 rounded-full bg-green-500/20" />
-            </div>
+            <Image
+              src="/dashboard_photo.png"
+              alt="CryptoDash Dashboard Preview"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           </div>
         </div>
         {/* Glow effect behind */}
