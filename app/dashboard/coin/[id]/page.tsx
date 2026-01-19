@@ -35,16 +35,16 @@ export default async function CoinDetailsPage({ params }: { params: Promise<{ id
     };
 
     return (
-        <main className="min-h-screen bg-gray-950 p-8 text-gray-100">
+        <main className="min-h-screen bg-neutral-950 p-8 text-gray-100">
             <div className="mx-auto max-w-7xl">
-                <Link href="/dashboard" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 mb-6 transition-colors">
+                <Link href="/dashboard" className="inline-flex items-center text-yellow-500 hover:text-yellow-400 mb-6 transition-colors">
                     ← Back to Dashboard
                 </Link>
 
                 {/* Header Section */}
                 <header className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
                     <div className="flex items-center gap-6">
-                        <div className="relative h-24 w-24 bg-white/10 rounded-2xl p-4 backdrop-blur-sm shadow-xl">
+                        <div className="relative h-24 w-24 bg-white/5 rounded-2xl p-4 backdrop-blur-sm shadow-xl ring-1 ring-white/10">
                             <Image
                                 src={details.image.large}
                                 alt={details.name}
@@ -57,10 +57,10 @@ export default async function CoinDetailsPage({ params }: { params: Promise<{ id
                                 <h1 className="text-4xl font-bold text-white mb-0">
                                     {details.name}
                                 </h1>
-                                <span className="text-xl text-gray-400 font-mono bg-white/5 py-1 px-3 rounded-lg border border-white/10">
+                                <span className="text-xl text-neutral-400 font-mono bg-white/5 py-1 px-3 rounded-lg border border-white/5">
                                     {details.symbol.toUpperCase()}
                                 </span>
-                                <span className="text-sm font-bold bg-indigo-500/20 text-indigo-300 py-1 px-3 rounded-full border border-indigo-500/30">
+                                <span className="text-sm font-bold bg-yellow-500/10 text-yellow-500 py-1 px-3 rounded-full border border-yellow-500/20">
                                     #{details.market_data.market_cap_rank}
                                 </span>
                             </div>
@@ -69,8 +69,8 @@ export default async function CoinDetailsPage({ params }: { params: Promise<{ id
                                 <span className="font-bold text-3xl tracking-tight">
                                     ${details.market_data.current_price.usd.toLocaleString()}
                                 </span>
-                                <span className={`font-semibold px-2 py-1 rounded-lg text-lg ${isPositive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
-                                    {isPositive ? '+' : ''}{details.market_data.price_change_percentage_24h.toFixed(2)}%
+                                <span className={`font-semibold px-2 py-1 rounded-lg text-lg ${isPositive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`}>
+                                    {isPositive ? '+' : ''}{details.market_data.price_change_percentage_24h?.toFixed(2) ?? '0.00'}%
                                 </span>
                             </div>
                         </div>
@@ -80,9 +80,9 @@ export default async function CoinDetailsPage({ params }: { params: Promise<{ id
                 </header>
 
                 {/* Chart Section */}
-                <section className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 backdrop-blur-md overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <section className="bg-white/5 border border-white/5 rounded-2xl p-6 mb-8 backdrop-blur-md overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700 shadow-lg">
                     <h2 className="text-xl font-bold mb-6 text-gray-300">Price History (7 Days)</h2>
-                    <div className="h-[300px] md:h-[400px] w-full min-w-0">
+                    <div className="h-[400px] w-full min-w-0">
                         <SimpleChart data={prices} color={isPositive ? "#34d399" : "#fb7185"} />
                     </div>
                 </section>

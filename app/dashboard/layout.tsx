@@ -13,12 +13,12 @@ export default function DashboardLayout({
 
     return (
         <FavoritesProvider>
-            <div className="flex min-h-screen bg-gray-950">
+            <div className="flex min-h-screen bg-neutral-950 text-gray-100">
                 {/* Mobile Toggle Button */}
                 <button
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     type="button"
-                    className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 fixed top-2 left-2 z-50 bg-gray-800/80 backdrop-blur"
+                    className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 fixed top-2 left-2 z-50 bg-neutral-900 border border-white/10 shadow-lg"
                 >
                     <span className="sr-only">Open sidebar</span>
                     <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@ export default function DashboardLayout({
 
                 <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-                <div className="flex-1 sm:ml-64 transition-all">
+                <div className="flex-1 sm:ml-64 transition-all pt-16 sm:pt-0">
                     {children}
                 </div>
             </div>

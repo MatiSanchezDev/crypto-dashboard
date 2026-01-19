@@ -23,8 +23,8 @@ export default function CoinActions({ coin }: CoinActionsProps) {
         <button
             onClick={toggleFavorite}
             className={`p-3 rounded-xl transition-all flex items-center gap-2 font-medium ${isFav
-                    ? "bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.3)]"
-                    : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                    ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.3)] border border-yellow-500/30"
+                    : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white border border-white/5 hover:border-white/10"
                 }`}
         >
             <svg

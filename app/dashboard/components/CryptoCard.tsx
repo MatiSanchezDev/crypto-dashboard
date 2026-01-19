@@ -33,12 +33,13 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
     }).format(value);
   };
 
-  const formatPercentage = (value: number) => {
+  const formatPercentage = (value: number | undefined | null) => {
+    if (value === undefined || value === null) return "N/A";
     return `${value.toFixed(2)}%`;
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white/5 p-6 shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl border border-white/10">
+    <div className="group relative overflow-hidden rounded-xl bg-neutral-900/50 p-6 shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-yellow-500/10 border border-white/5">
       <Link
         href={`/dashboard/coin/${coin.id}`}
         className="absolute inset-0 z-0"
@@ -46,7 +47,7 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
 
       <div className="flex items-center justify-between mb-4 relative z-10 pointer-events-none">
         <div className="flex items-center gap-3">
-          <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white/5 p-2">
+          <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white/5 p-2 ring-1 ring-white/10 group-hover:ring-yellow-500/50 transition-all">
             <Image
               src={coin.image}
               alt={coin.name}
@@ -56,23 +57,22 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
             />
           </div>
           <div>
-            <h3 className="font-bold text-lg text-white">{coin.name}</h3>
-            <p className="text-sm text-gray-400 uppercase">{coin.symbol}</p>
+            <h3 className="font-bold text-lg text-white group-hover:text-yellow-400 transition-colors">{coin.name}</h3>
+            <p className="text-sm text-neutral-400 uppercase">{coin.symbol}</p>
           </div>
         </div>
         {/* Adjusted badge position or just layout to prevent overlap */}
-        <span className="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-400 self-start mt-1">
+        <span className="text-xs font-mono bg-white/5 px-2 py-1 rounded text-neutral-400 self-start mt-1 group-hover:bg-yellow-500/10 group-hover:text-yellow-500 transition-colors">
           #{coin.market_cap_rank}
         </span>
       </div>
 
       <button
         onClick={toggleFavorite}
-        className={`absolute top-4 right-4 z-20 p-2 rounded-full transition-all ${
-          isFav
-            ? "text-rose-500 bg-rose-500/10 hover:bg-rose-500/20"
-            : "text-gray-400 hover:bg-white/10 hover:text-white"
-        }`}
+        className={`absolute top-4 right-4 z-20 p-2 rounded-full transition-all ${isFav
+            ? "text-yellow-500 bg-yellow-500/10 hover:bg-yellow-500/20"
+            : "text-neutral-500 hover:bg-white/10 hover:text-white"
+          }`}
         style={{ top: "1px", right: "1px" }}
       >
         <svg
@@ -91,7 +91,7 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
 
       <div className="space-y-4 relative z-10 pointer-events-none">
         <div>
-          <p className="text-sm text-gray-400">Current Price</p>
+          <p className="text-sm text-neutral-400">Current Price</p>
           <p className="text-2xl font-bold text-white tracking-tight">
             {formatCurrency(coin.current_price)}
           </p>
@@ -99,19 +99,18 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
 
         <div className="grid grid-cols-2 gap-4 pt-2 border-t border-white/5">
           <div>
-            <p className="text-xs text-gray-400">24h Change</p>
+            <p className="text-xs text-neutral-400">24h Change</p>
             <p
-              className={`text-sm font-semibold ${
-                isPositive ? "text-emerald-400" : "text-rose-400"
-              }`}
+              className={`text-sm font-semibold ${isPositive ? "text-emerald-400" : "text-rose-400"
+                }`}
             >
               {isPositive ? "+" : ""}
               {formatPercentage(coin.price_change_percentage_24h)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-400">Market Cap</p>
-            <p className="text-sm font-medium text-gray-300">
+            <p className="text-xs text-neutral-400">Market Cap</p>
+            <p className="text-sm font-medium text-neutral-300">
               {new Intl.NumberFormat("en-US", {
                 notation: "compact",
                 compactDisplay: "short",
@@ -124,7 +123,7 @@ export default function CryptoCard({ coin }: CryptoCardProps) {
       </div>
 
       {/* Decorative gradient blob */}
-      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-indigo-500/10 blur-3xl transition-opacity group-hover:opacity-75" />
+      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-yellow-500/5 blur-3xl transition-opacity group-hover:opacity-40" />
     </div>
   );
 }
